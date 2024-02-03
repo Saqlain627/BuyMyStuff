@@ -1,9 +1,9 @@
-describe('Signin as a buyer', function()
+describe('Signin as a buyer',  function()
 {
   
 
 
-    it('Emails is not correct',function()
+    it('Emails is not correct, user should not signin',{retries: 1}, function()
     {
 
      cy.visit ('https://buymystuff-buyer.web.app/signin')
@@ -34,6 +34,7 @@ describe('Signin as a buyer', function()
      cy.get('.icon-field > .form-control').type("Saqlain@1")
      cy.get('form.ng-dirty > .justify-content-center'). click()
      cy.log('User login');
+
     })
 
 
