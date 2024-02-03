@@ -1,75 +1,160 @@
 import 'cypress-file-upload';
 describe('Signin as a buyer', {retries: 1}, function()
 {
-       it('View the URL of sign up page is correct',function()
+       it('Signup buyer with already existing email account',function()
     {
         cy.visit ('https://buymystuff-buyer.web.app/signup')
+        //user name should be enter
         cy.get('input[placeholder="Name Here*"]').type("saqlain");
         cy.wait(5000);
-    })
 
+        //Select the gender in sign-up form
 
-    // it('select the gender', function () {
-    //     cy.get('.inlineRadio1').check().should("Male");
-    //   })
+        cy.get('#inlineRadio1').check('Male');
+
+        // User phone number be added in this case
+        cy.get('input[placeholder="Enter Here*"]').type("03060695405");
+       
+
+        // user phone number should be entered in this field.
+        cy.get('input[placeholder="Email Here*"]').type("saqlaina627@gmail.com");
+        
+        
+        // //User enter the password
+        cy.get('input[placeholder="Enter Password*"]').type("Saqlain@1");
+        
+
+        // //user re-enter the password
+        cy.get('input[placeholder="Re-Enter Password*"]').type("Saqlain@1");
+        
+
+        // //User add the image file
+        cy.fixture('laptop.jpg').as('imageData');
+        cy.get('.uploadInner').attachFile('laptop.jpg');
+
+       
+
+        cy.get('#flexCheckDefault').check();
+
       
 
+        //User click the button
+        cy.contains('button', 'Register Account').click();
 
-    describe("Enter the user phone number", function()
-        {
-            it('Enter the user name', function()
-            {
-            cy.visit ('https://buymystuff-buyer.web.app/signup');
-            cy.get('input[placeholder="Enter Here*"]').type("03060695405");
-            cy.wait(5000);
-        })
+        cy.wait(2000);
+
+        
+    })
+}) 
+
+
+
+describe('Signin as a buyer with negative test cases', {retries: 1}, function()
+{
+
+
+
+    it('Signup buyer flow check in negative test cases',function()
+    {
+        cy.visit ('https://buymystuff-buyer.web.app/signup')
+        //user name should be enter
+        cy.get('input[placeholder="Name Here*"]').type("saqlain098909595959599595959595959595959595959595959");
+        cy.wait(5000);
+
+        //Select the gender in sign-up form
+
+        cy.get('#inlineRadio1').check();
+
+        // User phone number be added in this case
+        cy.get('input[placeholder="Enter Here*"]').type("uuu03060999999999999990695405");
+       
+
+        // user Email should be entered in this field.
+        cy.get('input[placeholder="Email Here*"]').type("saqlaina627gmail.com");
+        
+        
+        // //User enter the password
+        cy.get('input[placeholder="Enter Password*"]').type("Saqlain1");
+        
+
+        // //user re-enter the password
+        cy.get('input[placeholder="Re-Enter Password*"]').type("Saqlain@2");
+        
+
+        // //User add the image file
+        cy.fixture('laptop.jpg').as('imageData');
+        cy.get('.uploadInner').attachFile('laptop.jpg');
+
+       
+
+        cy.get('#flexCheckDefault').uncheck();
+
+      
+
+        //User click the button
+        cy.contains('button', 'Register Account').click();
+        cy.wait(2000);
+
+
 
 
     })
 
-    describe("Enter the user email", function()
-    {
-        it('Enter the correct email' , function()
-        {
-        cy.visit ('https://buymystuff-buyer.web.app/signup');
-        cy.get('input[placeholder="Email Here*"]').type("saqlaina627@gmail.com");
-        cy.wait(5000);
-        })
-
-  
-
-  
 })
 
-describe("Enter the password", function()
+
+
+describe('Sign up as a buyer sucessfully with all the positive test cases', {retries: 1}, function()
 {
-    it('Enter the correct email', function()
+       it('Sign up as a buyer sucessfully with all the positive test cases',function()
     {
-    cy.visit ('https://buymystuff-buyer.web.app/signup');
-    cy.get('input[placeholder="Enter Password*"]').type("Saqlain@1");
-    cy.wait(5000);
-})
+        cy.visit ('https://buymystuff-buyer.web.app/signup')
+        //user name should be enter
+        cy.get('input[placeholder="Name Here*"]').type("saqlain");
+        cy.wait(5000);
 
-it('Upload image', function() {
+        //Select the gender in sign-up form
+
+        cy.get('#inlineRadio1').check('Male');
+
+        // User phone number be added in this case
+        cy.get('input[placeholder="Enter Here*"]').type("03060695405");
        
-    cy.visit('https://buymystuff-buyer.web.app/signup');
-    cy.fixture('laptop.jpg').as('imageData');
-    cy.get('.uploadInner').attachFile('laptop.jpg');
-    cy.wait(5000);
 
-})
+        // user phone number should be entered in this field.
+        cy.get('input[placeholder="Email Here*"]').type("saqlaina627+302@gmail.com");
+        
+        
+        // //User enter the password
+        cy.get('input[placeholder="Enter Password*"]').type("Saqlain@1");
+        
+
+        // //user re-enter the password
+        cy.get('input[placeholder="Re-Enter Password*"]').type("Saqlain@1");
+        
+
+        // //User add the image file
+        cy.fixture('laptop.jpg').as('imageData');
+        cy.get('.uploadInner').attachFile('laptop.jpg');
+
+       
+
+        cy.get('#flexCheckDefault').check();
+
+      
+
+        //User click the button
+        cy.contains('button', 'Register Account').click();
+        cy.wait(2000);
+
+        
+    })
+})  
 
 
 
 
-})
 
-
-
-
-
-
-})
 
 
 
@@ -81,11 +166,3 @@ it('Upload image', function() {
 
 
 
-
-
-    // it('name should be minimum 10 characters',function()
-    // {
-
-    //  cy.visit ('https://buymystuff-buyer.web.app/signup')
-    //  cy.get('[@placeholder='Name Here*']').type("saqlain44444444444444444444444444444444444444444444444444444")
-    // })
