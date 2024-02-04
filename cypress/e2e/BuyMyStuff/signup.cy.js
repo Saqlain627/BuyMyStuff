@@ -8,6 +8,12 @@ describe('Signin as a buyer', {retries: 1}, function()
         cy.get('input[placeholder="Name Here*"]').type("saqlain");
         cy.wait(5000);
 
+
+         //User add the image file
+        cy.fixture('laptop.jpg').as('imageData');
+        cy.get('.uploadInner').attachFile('laptop.jpg');
+        
+
         //Select the gender in sign-up form
 
         cy.get('#inlineRadio1').check('Male');
@@ -26,12 +32,6 @@ describe('Signin as a buyer', {retries: 1}, function()
 
         //user re-enter the password
         cy.get('input[placeholder="Re-Enter Password*"]').type("Saqlain@1");
-        
-
-        //User add the image file
-        cy.fixture('laptop.jpg').as('imageData');
-        cy.get('.uploadInner').attachFile('laptop.jpg');
-
        
 
         cy.get('#flexCheckDefault').check();
@@ -40,7 +40,6 @@ describe('Signin as a buyer', {retries: 1}, function()
 
         //User click the button
         cy.contains('button', 'Register Account').click();
-
         cy.wait(2000);
 
         
@@ -51,10 +50,7 @@ describe('Signin as a buyer', {retries: 1}, function()
 
 describe('Signin as a buyer with negative test cases', {retries: 1}, function()
 {
-
-
-
-    it('Signup buyer flow check in negative test cases',function()
+   it('Signup buyer flow check in negative test cases',function()
     {
         cy.visit ('https://buymystuff-buyer.web.app/signup')
         //user name should be enter
@@ -80,18 +76,21 @@ describe('Signin as a buyer with negative test cases', {retries: 1}, function()
         cy.get('input[placeholder="Re-Enter Password*"]').type("Saqlain@2");
         
 
-        //User add the image file
+       // User add the image file
         cy.fixture('laptop.jpg').as('imageData');
         cy.get('.uploadInner').attachFile('laptop.jpg');
+        
 
-       
 
+        //User uncheck the box
+    
         cy.get('#flexCheckDefault').uncheck();
 
       
 
         //User click the button
         cy.contains('button', 'Register Account').click();
+        
         cy.wait(2000);
 
 
@@ -145,6 +144,7 @@ describe('Sign up as a buyer sucessfully with all the positive test cases', {ret
         
     })
 })  
+
 
 
 
